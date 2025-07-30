@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaHeart, FaHome, FaStar, FaArrowRight, FaClipboardList, FaHandshake, FaUsers } from 'react-icons/fa';
