@@ -1,38 +1,31 @@
+import fs from 'fs';
+import path from 'path';
 import { Cat } from '@/lib/types';
-import { fetchCats } from '@/lib/cat-api';
-import { CatsClient } from './cats-client';
+import CatsClient from '@/components/cats-client';
+
+// Server-side function to load cats from JSON
+async function getCats(): Promise<Cat[]> {
+  try {
+    const filePath = path.join(process.cwd(), 'src', 'data', 'cats.json');
+    
+    // Check if file exists, if not generate some fallback data
+    if (!fs.existsSync(filePath)) {
+      console.warn('cats.json not found, creating fallback data');
+      // Create fallback data
+      return [];
+    }
+    
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const cats: Cat[] = JSON.parse(fileContents);
+    return cats;
+  } catch (error) {
+    console.error('Error loading cats:', error);
+    return [];
+  }
+}
 
 export default async function CatsPage() {
-  let cats: Cat[] = [];
-  let error: string | null = null;
-
-  try {
-    cats = await fetchCats(24);
-  } catch (e) {
-    console.error('Error loading cats:', e);
-    error = 'Failed to load cats. Please try again later.';
-  }
-
-  if (error) {
-    return (
-      <div className="bg-gray-50/90 min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center py-20">
-            <h1 className="heading-font text-5xl md:text-6xl font-bold text-gray-900 mb-8">
-              Find Your Perfect Companion
-            </h1>
-            <p className="text-xl text-red-600 mb-8">{error}</p>
-            <button
-              onClick={() => window.location.reload()}
-              className="btn-primary"
-            >
-              Try Again
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const cats = await getCats();
 
   return (
     <div className="bg-gray-50/90 min-h-screen">
@@ -47,7 +40,7 @@ export default async function CatsPage() {
           </p>
         </div>
 
-        {/* Client Component with all the interactive features */}
+        {/* Client Component with Interactive Features */}
         <CatsClient initialCats={cats} />
       </div>
     </div>

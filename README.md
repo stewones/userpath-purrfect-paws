@@ -572,7 +572,7 @@ src/
 │   └── cart-context.tsx    # Shopping cart with essential e-commerce tracking
 └── lib/
     ├── userpath.ts         # UserPath configuration with auto-tracking enabled
-    ├── cat-api.ts          # Mock cat data generation
+    ├── cats.ts             # Cat data generation
     └── types.ts            # TypeScript type definitions
 ```
 

@@ -11,11 +11,9 @@ interface CatsClientProps {
   initialCats: Cat[];
 }
 
-export function CatsClient({ initialCats }: CatsClientProps) {
+export default function CatsClient({ initialCats }: CatsClientProps) {
   const { addToCart } = useCart();
-  const [cats] = useState<Cat[]>(initialCats);
   const [filteredCats, setFilteredCats] = useState<Cat[]>(initialCats);
-  const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBreed, setSelectedBreed] = useState('all');
   const [ageFilter, setAgeFilter] = useState('all');
@@ -24,7 +22,7 @@ export function CatsClient({ initialCats }: CatsClientProps) {
 
   // Filter and sort cats whenever filters change
   useEffect(() => {
-    let filtered = [...cats];
+    let filtered = [...initialCats];
 
     // Search filter
     if (searchTerm) {
@@ -64,7 +62,7 @@ export function CatsClient({ initialCats }: CatsClientProps) {
     }
 
     setFilteredCats(filtered);
-  }, [cats, searchTerm, selectedBreed, ageFilter, priceSort, showAdopted]);
+  }, [initialCats, searchTerm, selectedBreed, ageFilter, priceSort, showAdopted]);
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
@@ -87,7 +85,7 @@ export function CatsClient({ initialCats }: CatsClientProps) {
     addToCart(cat); // This tracks the add_to_cart event
   };
 
-  const breeds = [...new Set(cats.map(cat => cat.breed))].sort();
+  const breeds = [...new Set(initialCats.map(cat => cat.breed))].sort();
 
   const clearFilters = () => {
     handleSearch('');
@@ -205,25 +203,12 @@ export function CatsClient({ initialCats }: CatsClientProps) {
       {/* Results Summary */}
       <div className="flex justify-between items-center mb-8">
         <p className="text-gray-600 text-lg">
-          Showing <span className="font-semibold">{filteredCats.length}</span> of <span className="font-semibold">{cats.length}</span> cats
+          Showing <span className="font-semibold">{filteredCats.length}</span> of <span className="font-semibold">{initialCats.length}</span> cats
         </p>
       </div>
 
-      {/* Loading State */}
-      {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {[...Array(12)].map((_, i) => (
-            <div key={i} className="card overflow-hidden animate-pulse">
-              <div className="aspect-square bg-gray-200"></div>
-              <div className="p-8">
-                <div className="h-4 bg-gray-200 rounded-full mb-3"></div>
-                <div className="h-3 bg-gray-200 rounded-full mb-6 w-2/3"></div>
-                <div className="h-10 bg-gray-200 rounded-2xl"></div>
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : filteredCats.length === 0 ? (
+      {/* Cat Grid */}
+      {filteredCats.length === 0 ? (
         /* No Results */
         <div className="text-center py-20">
           <div className="text-6xl mb-6">
@@ -240,7 +225,6 @@ export function CatsClient({ initialCats }: CatsClientProps) {
           </button>
         </div>
       ) : (
-        /* Cat Grid */
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {filteredCats.map((cat) => (
             <Link

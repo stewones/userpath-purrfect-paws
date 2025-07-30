@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useUserPath } from "@/components/userpath-provider";
 import { useCart } from "@/contexts/cart-context";
 import { Cat } from "@/lib/types";
-import { fetchFeaturedCats } from "@/lib/cat-api";
+import { fetchFeaturedCats } from "@/lib/cats";
 import { FaHeart, FaHome, FaHandsHelping, FaArrowRight, FaStar, FaShieldAlt } from 'react-icons/fa';
 
 export default function Home() {

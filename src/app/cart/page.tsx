@@ -53,7 +53,7 @@ export default function CartPage() {
       clearCart();
       
       // Show success message (in a real app, you'd redirect to a success page)
-      alert(`🎉 Adoption process started!\n\nOrder ID: ${orderId}\n\nYou'll receive an email with next steps. But wait, this is a demo so you actually won't receive any email 😅 but you can check your UserPath dashboard and start asking questions 😉`);
+      alert(`It's great to see you here! You can now check your UserPath dashboard and start asking questions 😉`);
     }, 3000);
   };
 
@@ -152,7 +152,7 @@ export default function CartPage() {
                           id={`quantity-${item.cat.id}`}
                           value={item.quantity}
                           onChange={(e) => handleQuantityChange(item.cat.id, parseInt(e.target.value))}
-                          className="border border-gray-300 rounded px-2 py-1 text-sm"
+                          className="border border-gray-300 rounded px-2 py-1 text-sm text-black"
                           data-action="update-quantity"
                           data-cat-id={item.cat.id}
                         >
