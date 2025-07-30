@@ -1,86 +1,4 @@
-'use client';
-
-import { useState } from 'react';
-
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    interest: '',
-    company: '',
-    message: '',
-    newsletter: false
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    
-    if (type === 'checkbox') {
-      const checkbox = e.target as HTMLInputElement;
-      setFormData(prev => ({
-        ...prev,
-        [name]: checkbox.checked
-      }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-    }, 2000);
-  };
-
-  if (submitted) {
-    return (
-      <div className="bg-gray-50 min-h-screen py-12">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-lg shadow-sm p-8 text-center">
-            <div className="text-6xl mb-6">✅</div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Thank You!</h1>
-            <p className="text-gray-600 mb-6">
-              We've received your message and will get back to you within 24 hours.
-            </p>
-            <p className="text-sm text-gray-500">
-              Check your email for a confirmation message with next steps.
-            </p>
-            <button
-              onClick={() => {
-                setSubmitted(false);
-                setFormData({
-                  name: '',
-                  email: '',
-                  phone: '',
-                  interest: '',
-                  company: '',
-                  message: '',
-                  newsletter: false
-                });
-              }}
-              className="mt-6 text-orange-500 hover:text-orange-600 font-medium"
-              data-action="send-another"
-            >
-              Send Another Message
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="bg-gray-50 min-h-screen py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,7 +15,7 @@ export default function ContactPage() {
           <div className="bg-white rounded-lg shadow-sm p-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">Send us a message</h2>
             
-            <form onSubmit={handleSubmit} className="space-y-6" data-form="contact">
+            <form className="space-y-6" data-form="contact">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -107,8 +25,6 @@ export default function ContactPage() {
                     type="text"
                     id="name"
                     name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
                     required
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                     data-field="name"
@@ -123,8 +39,6 @@ export default function ContactPage() {
                     type="email"
                     id="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
                     required
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                     data-field="email"
@@ -140,8 +54,6 @@ export default function ContactPage() {
                   type="tel"
                   id="phone"
                   name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                   data-field="phone"
                 />
@@ -154,8 +66,6 @@ export default function ContactPage() {
                 <select
                   id="interest"
                   name="interest"
-                  value={formData.interest}
-                  onChange={handleInputChange}
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                   data-field="interest"
@@ -178,8 +88,6 @@ export default function ContactPage() {
                   type="text"
                   id="company"
                   name="company"
-                  value={formData.company}
-                  onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                   data-field="company"
                 />
@@ -192,8 +100,6 @@ export default function ContactPage() {
                 <textarea
                   id="message"
                   name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
                   rows={4}
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
@@ -207,8 +113,6 @@ export default function ContactPage() {
                   type="checkbox"
                   id="newsletter"
                   name="newsletter"
-                  checked={formData.newsletter}
-                  onChange={handleInputChange}
                   className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
                   data-field="newsletter"
                 />
@@ -219,11 +123,10 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-orange-500 text-white py-3 px-4 rounded-md font-semibold hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-full bg-orange-500 text-white py-3 px-4 rounded-md font-semibold hover:bg-orange-600 transition-colors"
                 data-action="submit-form"
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                Send Message
               </button>
             </form>
           </div>
@@ -294,8 +197,8 @@ export default function ContactPage() {
             <div className="bg-white rounded-lg shadow-sm p-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
               <div className="space-y-3">
-                <button
-                  className="w-full text-left p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                <div
+                  className="w-full text-left p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                   data-quick-action="adoption-info"
                 >
                   <div className="flex items-center">
@@ -305,10 +208,10 @@ export default function ContactPage() {
                       <p className="text-sm text-gray-600">Learn about our adoption process</p>
                     </div>
                   </div>
-                </button>
+                </div>
 
-                <button
-                  className="w-full text-left p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                <div
+                  className="w-full text-left p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                   data-quick-action="volunteer-signup"
                 >
                   <div className="flex items-center">
@@ -318,10 +221,10 @@ export default function ContactPage() {
                       <p className="text-sm text-gray-600">Join our amazing volunteer team</p>
                     </div>
                   </div>
-                </button>
+                </div>
 
-                <button
-                  className="w-full text-left p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                <div
+                  className="w-full text-left p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                   data-quick-action="emergency-contact"
                 >
                   <div className="flex items-center">
@@ -331,7 +234,7 @@ export default function ContactPage() {
                       <p className="text-sm text-gray-600">24/7 support for adopters</p>
                     </div>
                   </div>
-                </button>
+                </div>
               </div>
             </div>
           </div>
@@ -339,4 +242,4 @@ export default function ContactPage() {
       </div>
     </div>
   );
-} 
+}
