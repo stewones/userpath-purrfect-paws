@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { useCart } from '@/contexts/cart-context';
 import { useUserPath } from '@/components/userpath-provider';
 
+// Force dynamic rendering to prevent static generation issues
+export const dynamic = 'force-dynamic';
+
 export default function CartPage() {
   const { items, removeFromCart, updateQuantity, clearCart, totalPrice } = useCart();
   const { trackPurchase } = useUserPath();
