@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/contexts/cart-context';
-import { useUserPath } from '@/components/userpath-provider';
 import { Cat } from '@/lib/types';
 import { 
   FaHeart, 
@@ -19,6 +18,7 @@ import {
   FaSyringe,
   FaCut
 } from 'react-icons/fa';
+import { useUserPath } from '../../../providers/userpath-provider';
 
 interface CatDetailClientProps {
   cat: Cat;

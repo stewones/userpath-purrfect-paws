@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { UserPathProvider } from "@/components/userpath-provider";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { CartProvider } from "@/contexts/cart-context";
@@ -54,7 +53,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${playfair.variable} antialiased`}
       >
-        <UserPathProvider>
           <CartProvider>
             <Navigation />
             <main className="min-h-screen">
@@ -62,7 +60,6 @@ export default function RootLayout({
             </main>
             <Footer />
           </CartProvider>
-        </UserPathProvider>
       </body>
     </html>
   );

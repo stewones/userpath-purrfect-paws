@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { Cat, CartItem, CartContextType } from '@/lib/types';
-import { useUserPath } from '@/components/userpath-provider';
+import { useUserPath } from '../providers/userpath-provider';
 
 // Cart reducer actions
 type CartAction =

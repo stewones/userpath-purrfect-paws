@@ -449,12 +449,10 @@ As an alternative to the JavaScript SDK, you can use the browser pixel by uncomm
 
 #### JavaScript SDK
 - **Configuration**: `src/lib/userpath.ts`
-- **Provider Component**: `src/components/userpath-provider.tsx`
 - **Custom Hook**: `useUserPath()` for essential business events only
 
 #### Usage Example
 ```tsx
-import { useUserPath } from '@/components/userpath-provider';
 
 function MyComponent() {
   const { trackEvent, trackPurchase } = useUserPath();
@@ -567,7 +565,6 @@ src/
 │   └── globals.css         # Global styles
 ├── components/
 │   ├── navigation.tsx      # Navigation with semantic attributes
-│   └── userpath-provider.tsx # UserPath SDK initialization and essential events hook
 ├── contexts/
 │   └── cart-context.tsx    # Shopping cart with essential e-commerce tracking
 └── lib/

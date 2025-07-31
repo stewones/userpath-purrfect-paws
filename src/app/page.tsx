@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
-import { useUserPath } from "@/components/userpath-provider";
-import { useCart } from "@/contexts/cart-context";
 import { Cat } from "@/lib/types";
 import { fetchFeaturedCats } from "@/lib/cats";
 import { FaHeart, FaHome, FaHandsHelping, FaArrowRight, FaStar, FaShieldAlt } from 'react-icons/fa';
+import { useUserPath } from '../providers/userpath-provider';
+import { useCart } from '../contexts/cart-context';
 
 export default function Home() {
   const { trackEvent } = useUserPath();

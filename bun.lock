@@ -8,7 +8,7 @@
         "react": "19.1.0",
         "react-dom": "19.1.0",
         "react-icons": "^5.5.0",
-        "userpath-js": "^1.0.2",
+        "userpath-js": "^1.0.6",
       },
       "devDependencies": {
         "@types/node": "^20",
@@ -343,7 +343,7 @@
 
     "update-browserslist-db": ["update-browserslist-db@1.1.3", "", { "dependencies": { "escalade": "^3.2.0", "picocolors": "^1.1.1" }, "peerDependencies": { "browserslist": ">= 4.21.0" }, "bin": "cli.js" }, "sha512-UxhIZQ+QInVdunkDAaiazvvT/+fXL5Osr0JZlJulepYu6Jd7qJtDZjlur0emRlT71EN3ScPoE7gvsuIKKNavKw=="],
 
-    "userpath-js": ["userpath-js@1.0.4", "", { "dependencies": { "iconv-lite": "^0.6.3" } }, "sha512-oXUBZKdg4Bb/r+VOsZ1wMYBNozgxC63vSNRv/Pukj+D6C2XNWMfaexm1XNa4/jMbnjj8XaclPp+kpuL2OUa5KQ=="],
+    "userpath-js": ["userpath-js@1.0.6", "", { "dependencies": { "iconv-lite": "^0.6.3" } }, "sha512-DzLR4Q9Q2ezBJ/sxiMJ3ZUwYFGYDvqQ/qMWkRvUZ4XmtpkUcTi8syf5ftKnJPfElfg9n6TvZu0JEDxGjb4GAdA=="],
 
     "util-deprecate": ["util-deprecate@1.0.2", "", {}, "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="],
 
